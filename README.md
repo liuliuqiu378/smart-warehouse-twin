@@ -14,6 +14,142 @@
 
 ---
 
+## 🎬 演示视频
+
+### 软件运行界面
+
+<div align="center">
+  <img src="docs/demo.gif" alt="智能仓储系统运行演示" width="800">
+</div>
+
+*AGV在智能仓储系统中实时调度和运行演示*
+
+### 功能展示
+
+| 界面元素 | 功能说明 |
+|---------|---------|
+| 🗺️ **左侧地图区域** | 40×30网格仓库布局，实时显示AGV位置和状态 |
+| 📊 **右侧仪表盘** | 性能指标实时监控，包括订单完成率、AGV利用率等 |
+| 🚗 **彩色AGV** | 不同颜色代表不同状态（空闲、工作中、充电中等） |
+| 🛤️ **路径显示** | 可选显示AGV规划路径和移动轨迹 |
+| 🔥 **热力图** | 可视化显示仓库拥堵情况 |
+| ⏱️ **时间窗** | 显示AGV时空预留情况 |
+
+### 如何制作演示GIF
+
+如果你想自己制作演示GIF，可以按照以下步骤：
+
+#### 方法1：使用OBS Studio + GIF转换
+
+1. **安装OBS Studio**
+   ```bash
+   # 下载地址：https://obsproject.com/
+   ```
+
+2. **录制屏幕**
+   - 打开OBS Studio
+   - 选择"屏幕捕获"或"窗口捕获"
+   - 设置录制区域为软件界面
+   - 点击"开始录制"，运行软件30-60秒
+   - 点击"停止录制"，保存为MP4文件
+
+3. **转换为GIF**
+   ```bash
+   # 使用FFmpeg转换
+   ffmpeg -i recording.mp4 -vf "fps=10,scale=800:-1" -c:v gif recording.gif
+
+   # 或者使用在线工具：https://ezgif.com/video-to-gif
+   ```
+
+#### 方法2：使用ScreenToGif（推荐）
+
+1. **下载ScreenToGif**
+   ```bash
+   # 下载地址：https://www.screentogif.com/
+   ```
+
+2. **录制GIF**
+   - 打开ScreenToGif，选择"录像机"
+   - 框选软件界面区域
+   - 点击"录制"，运行软件展示功能
+   - 点击"停止"，编辑和优化GIF
+   - 导出为GIF文件
+
+3. **放置到项目中**
+   ```bash
+   # 创建docs目录
+   mkdir docs
+
+   # 将GIF文件放到docs目录
+   # 重命名为demo.gif
+   ```
+
+#### 方法3：使用Python录制（自动化）
+
+```python
+# record_demo.py
+import cv2
+import numpy as np
+import pyautogui
+import time
+
+# 录制参数
+region = (100, 100, 800, 600)  # (x, y, width, height)
+duration = 30  # 录制30秒
+fps = 10
+
+print("3秒后开始录制...")
+time.sleep(3)
+
+print("开始录制！请运行软件展示功能")
+frames = []
+start_time = time.time()
+
+while time.time() - start_time < duration:
+    screenshot = pyautogui.screenshot(region=region)
+    frame = cv2.cvtColor(np.array(screenshot), cv2.COLOR_RGB2BGR)
+    frames.append(frame)
+    time.sleep(1/fps)
+
+print("录制完成，保存GIF...")
+# 保存为GIF（需要imageio库）
+import imageio
+imageio.mimsave('docs/demo.gif', frames, fps=fps)
+print("GIF已保存到 docs/demo.gif")
+```
+
+### GIF制作建议
+
+- **时长**: 20-40秒为宜，太长文件太大
+- **尺寸**: 宽度800像素左右，保持比例
+- **帧率**: 8-12 FPS，保证流畅度
+- **内容**: 展示核心功能，如AGV移动、订单完成、状态切换
+- **文件大小**: 控制在5MB以内，便于GitHub加载
+
+### 备选方案
+
+如果制作GIF有困难，可以考虑：
+
+1. **静态截图**
+   ```markdown
+   <div align="center">
+     <img src="docs/screenshot1.png" alt="界面截图1" width="400">
+     <img src="docs/screenshot2.png" alt="界面截图2" width="400">
+   </div>
+   ```
+
+2. **YouTube视频链接**
+   ```markdown
+   [![观看演示视频](docs/video_thumbnail.png)](https://youtube.com/your_video_id)
+   ```
+
+3. **使用在线GIF制作工具**
+   - [Loom](https://www.loom.com/) - 免费屏幕录制
+   - [CloudApp](https://www.cloudapp.com/) - 快速分享
+   - [Giphy](https://giphy.com/create/gifmaker) - 在线GIF制作
+
+---
+
 ## 📖 项目简介
 
 本项目实现了一个完整的智能仓储数字孪生仿真系统，模拟真实仓库中 AGV（自动导引车）的调度和运行情况。通过可视化界面，可以直观地观察不同调度策略的效果，为仓储优化提供决策支持。
