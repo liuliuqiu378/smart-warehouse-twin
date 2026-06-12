@@ -69,8 +69,8 @@
 1. **克隆仓库**
 
 ```bash
-git clone https://github.com/liuliuqiu378/zhinengcangchu.git
-cd zhinengcangchu
+git clone https://github.com/liuliuqiu378/smart-warehouse-twin.git
+cd smart-warehouse-twin
 ```
 
 2. **安装依赖**
@@ -439,8 +439,8 @@ python test.py
 
 ## 📞 联系方式
 
-- 项目主页：[https://github.com/liuliuqiu378/zhinengcangchu](https://github.com/liuliuqiu378/zhinengcangchu)
-- 问题反馈：[Issues](https://github.com/liuliuqiu378/zhinengcangchu/issues)
+- 项目主页：[https://github.com/liuliuqiu378/smart-warehouse-twin](https://github.com/liuliuqiu378/smart-warehouse-twin)
+- 问题反馈：[Issues](https://github.com/liuliuqiu378/smart-warehouse-twin/issues)
 
 ---
 
